@@ -98,7 +98,7 @@ int main ( )
   initialize();
   
   fin>>word;
-  while (!cin.eof())
+  while (!fin.eof())
   {
     findSmallestSubString(word, count);
     fin>>word;
