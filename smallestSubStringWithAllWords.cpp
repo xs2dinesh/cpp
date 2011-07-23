@@ -8,33 +8,16 @@ struct Node
 {
   Node *prev, *next;
   int index;
-  Node() 
-  {
-    prev = next = 0 ; 
-    index = -1 ;
-  }
+  Node() : prev (0), next (0), index (-1)
+  {}
 };
+
 typedef unordered_map<string, Node*> Hash;
 
 Hash words;
 Node  *start = NULL, *end = NULL;
 unsigned int noOfWords = 0;
 unsigned int smallestIndex = 0, smallestCount = -1 ;
-
-void initialize() 
-{
-  return ;
-  
-  Node* previous = NULL;
-  for ( Hash::iterator itr = words.begin();
-        itr!=words.end(); ++itr) 
-  {
-    (itr->second)->prev = previous;
-    if( previous ) previous->next = (itr->second);
-    
-    previous = (itr->second);
-  }
-}
 
 void findSmallestSubString (string word, unsigned int indexInString)
 {
@@ -78,38 +61,39 @@ void findSmallestSubString (string word, unsigned int indexInString)
 }
 
 
-int main ( ) 
+int main () 
 {
   unsigned int count = 0 ;
   string word;
   
-  fstream fin ("smallestSubStringWithAllWords.in", ios::in ) ;
+  fstream cin ("smallestSubStringWithAllWords.in", ios::in ) ;
   
-  
-  fin >> noOfWords;
+  cin >> noOfWords;
   count = noOfWords;
   
   while( count-- ) 
   {
-    fin >> word;
+    cin >> word;
     words[word] = new Node;
   }
  
-  initialize();
-  
-  fin>>word;
-  while (!fin.eof())
+  cin>>word;
+  count = 1;
+
+  while (!cin.eof())
   {
     findSmallestSubString(word, count);
-    fin>>word;
+    cin>>word;
     count++;
   }
   
-  fin.close();
+  cin.close();
   
   if( smallestCount > 0 ) 
-    cout<<"String starting from "<<smallestIndex<<" length "<< smallestCount
-    <<" is the smallest substring"<<endl;
+    cout<<"String starting from word at "<<smallestIndex<<" length "<< smallestCount
+    <<" is the smallest substring."<<endl;
   
   return 0;
 }
+
+
