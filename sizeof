@@ -1,0 +1,78 @@
+/*
+* http://www.geocities.com/vijoeyz/faq/c/html/sizeof_impl.html
+* sizeof.c     -   Implementation of sizeof operator
+* Author       -   Vijay Kumar R Zanvar <vijoeyz@hotpop.com>
+* Date         -   Jan 07, 2004
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Find the size of an variable */
+#define sizeof_var( var ) ((size_t)(&(var)+1)-(size_t)(&(var)))
+
+/* Find the size of a data type */
+#define sizeof_type( type )  (size_t)((type*)1000 + 1 )-(size_t)((type*)1000)
+
+int
+main ( void )
+{
+   int a;
+   int b[10];
+
+   printf ( "%lu\n", sizeof ( b ) );
+   printf ( "%lu\n", sizeof ( b+0 ) );
+   printf ( "%lu\n", sizeof_var ( a ) );
+   printf ( "%lu\n", sizeof_type ( int ) );
+   return EXIT_SUCCESS;
+}
+-------------------------------------------------------------
+Jeremy Yallop says:
+
+
+#define sizeof_type( type )  (size_t)((type*)0 + 1 )
+
+This invokes undefined behaviour: pointer arithmetic on null pointers
+is not defined.  Even if the arithmetic were guaranteed to work, the
+conversion from pointer to integer is implementation-defined and may
+not give the results you expect.
+
+It can't be implemented, in general, I think.  It can't be done in the
+way you suggest because there's no way to form type names representing
+'pointer to T' from type names representing type T (hence the
+restrictions on the type argument to va_arg).  It /can/ be implemented
+in GNU C using statement expressions, but there's no need to implement
+it at all given that sizeof is already part of the language.
+
+Jeremy.
+
+-------------------------------------------------------------
+In <113be981.0404041146.9f1eacf@posting.google.com>
+sweety_elegant@yahoo.co.in (Sweety) writes:
+
+Except for the trivial
+
+   #define SIZEOF sizeof
+
+sizeof(type) cannot be replaced by a macro (portably).  It would
+have to use a trick similar to that used by the canonical offsetof
+implementation (pointer arithmetic on a null pointer of the type
+in question):
+
+   #define TSIZEOF(x) ((char *)((x *)0 + 1) - (char *)(x *)0)
+
+What can be done portably is replacing sizeof lvalue by a macro:
+
+   #define LVSIZEOF(x) ((char *)(&(x) + 1) - (char *)&(x))
+
+Neither of these macros has the right type for sizeof, but this can be
+trivially fixed.
+
+The part that can't be implemented in standard C as a macro at all is
+sizeof rvalue.  This can be reduced to TSIZEOF with a GNU C extension:
+
+   #define RVSIZEOF(x) TSIZEOF(typeof(x))
+
+Remeber: only LVSIZEOF is written in portable C, although TSIZEOF is
+likely to work practically anywhere.
+

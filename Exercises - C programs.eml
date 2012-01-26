@@ -1,0 +1,1310 @@
+Received: by 10.100.132.9 with HTTP; Tue, 19 Jun 2007 09:33:53 -0700 (PDT)
+Message-ID: <313b0d8e0706190933v6a8f0189h1f8aca94142ae7ec@mail.gmail.com>
+Date: Tue, 19 Jun 2007 22:03:53 +0530
+From: "Dinesh Verma" <cooldineshverma@gmail.com>
+To: cooldineshverma@gmail.com
+Subject: Exercises - C programs
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_114054_30374180.1182270833791"
+Delivered-To: cooldineshverma@gmail.com
+
+------=_Part_114054_30374180.1182270833791
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+Exercises <http://www.itee.uq.edu.au/%7Ecomp2303/exercises/>
+
+  [image: The University of Queensland Homepage]
+<http://www.uq.edu.au/>   [image:
+Link to my.UQ] <http://www.my.uq.edu.au/>   [image: School of
+ITEE]<http://www.itee.uq.edu.au/> [image:
+ITEE Main Website] <http://www.itee.uq.edu.au/>     Public ITEE All UQ
+
+
+
+ QUICK LINKS  ITEE Public Web <http://www.itee.uq.edu.au/>   Student
+IT Help<http://studenthelp.itee.uq.edu.au/>
+   ITEE Internal Web <http://internal.itee.uq.edu.au/>   Staff IT
+Help<http://help.itee.uq.edu.au/>
+
+
+
+  ITEE Home <http://www.itee.uq.edu.au/> =BB COMP2303 - Network And Operati=
+ng
+Systems Principles <http://www.itee.uq.edu.au/%7Ecomp2303/> =BB
+Exercises  [image:
+Printer Friendly Version]
+<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/?print=3D1> Print
+version<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/?print=3D1>
+
+    COMP2303 / COMP7306 Exercises
+
+Exercises will be provided relating to the lecture material and C
+programming. We won't provide solutions to these exercises, but are willing
+to post correct student supplied solutions. If you want your solution to be
+considered, email it to comp2303@itee.uq.edu.au (as an attachment) with the
+word SOLUTION in the subject line and clearly specify the week and exercise
+number which this is a potential solution for. *The submitter's identity
+(name) WILL be published unless you request anonymity. *Either way, you *MU=
+ST
+send the email from your student email account OR include your student
+number in the email*. Multiple solutions will be posted only if sufficientl=
+y
+different from the first solution posted. Don't expect a reply to your emai=
+l
+- we won't mark your work. If you have questions or queries about posted
+solutions or other possible solutions, you should post them to the newsgrou=
+p
+for discussion or raise them at a tutorial or consultation session.
+Week 12 - Internet & Ethernet
+
+   1. For each of the following IP addresses and associated subnet masks,
+   what is the range of IP addresses on the local network? *IP address* *
+   Subnet-mask* *Range of IP addresses*  130.102.15.25 255.255.255.0
+   130.102.15.25 255.255.255.192    130.102.25.15 255.255.252.0
+   130.102.25.15 255.255.224.0
+
+   2. Write a C program that does the conversion in (1) above -
+   specifically, your program should accept two command line arguments - an=
+ IP
+   address and a subnet mask (both in dotted-decimal format like those in t=
+he
+   table above) - and then print out the range of (i.e. "smallest" to
+   "greatest") IP addresses on that local network.
+
+   3. Why is the first header in an IP packet the IP version header?
+
+   4. Why are ARP database entries cached?
+
+   5. Modify the UDP chat program (from 25 May lecture) to allow for UDP
+   conversation between three (or perhaps more) clients.
+
+   6. A computer on an Ethernet is configured with a MAC address
+   00-05-5d-7f-fc-d7, an IP address 130.102.128.25, a gateway address of
+   130.102.129.254 and a subnet mask of 255.255.252.0. The computer's ARP
+   cache contains one entry:
+   130.102.129.254    00-0e-f7-4e-e6-78
+   Consider an IP datagram contained in an Ethernet frame sent to each of
+   the IP addresses below. Write down the destination IP address for the
+   datagram and the destination MAC address for the enclosing frame as it
+   leaves the source (130.102.128.25). If the answer is unknown, specify
+   how it can be determined.
+   (a) 130.102.129.25
+   (b) 130.102.127.254
+
+Week 9
+
+The following exercises relate to interprocess communication
+
+   1. Write a C program which contains a handler for segmentation faults.
+   The handler should attempt to print a message to standard error then exi=
+t.
+   After setting up the handler, your program should cause a segmentation f=
+ault
+   (e.g. dereference a null pointer). Hint: use the signal() or sigset()
+   system call as illustrated in lectures.
+
+   2. Write a C program which creates 5 children with pipes between them
+   to execute
+   who | cut -d " " -f1 | sort | uniq | wc -l
+   After forking each child, you will need to make standard input/output
+   point to the right ends of the right pipes and then call exec() to start=
+ the
+   appropriate program. Look at the pipe example from week 9 lectures as a
+   starting point. The parent should wait until the last child has finished
+   before exiting.
+
+   3. Rewrite your answer to question 2 so that the parent is the process
+   that execs "wc -l" (i.e. only four children are used). (You'll need to
+   make sure that standard input for the parent comes from the right pipe.)
+
+Week8
+
+The following exercises relate to memory allocation.
+
+   1. Implement (in C) a version of malloc/free that always allocates new
+   memory for every malloc request and ignores free requests. (The allocato=
+r
+   will be fast but have very poor memory utilization.) Hint: look at the
+   manual entries for the brk() and sbrk() functions.
+
+   2. Add code to the version of malloc in 1 (above) that logs all memory
+   allocations (malloc's) and deallocations (free's) to a file. (This is ca=
+lled
+   a memory activity trace.) The format of the file should be one line per
+   operation, either an Allocate line or a Free line:
+   *Allocate tag size
+   Free tag*
+   where *tag* is the memory address (decimal) of the allocated/freed
+   memory and *size* is the number of bytes requested in the allocation.
+
+Week7
+
+The following exercises relate to threads
+
+   1. Write a thread safe version of the function strtok(). Hint: It
+   might have the same arguments as the thread-safe strtok_r().
+   2. Determine which of the following library functions and system calls
+   are thread safe and which aren't. (Hint: read the man pages.)
+      1. strcpy()
+      2. strlen()
+      3. ctime()
+      4. gethostname()
+      5. gethostbyname()
+      6. lseek()
+      7. readdir()
+      8. opendir()
+
+The following exercises relate to virtual memory
+
+   1. Write a C program to determine the size of pages on agave. Hint:
+   look at the sysconf(3c) and getpagesize(3c) library functions. Try using
+   both.
+
+   2. Determine the potential (i.e. maximum) number of page table entries
+   (PTEs) that are needed for the following combinations of virtual address
+   size (n, in bits) and page size (P, in kbytes): *n (bits)* *P (kbytes)
+   * *#PTEs*  16 4    16 8    32 4    32 8    (from B&O).
+
+   3. Given a 32-bit virtual address space and a 24-bit physical address
+   space, determine the number of bits in the page number (p), the page off=
+set
+   (d) and the frame number (f) for the following page sizes (P, in kbytes)=
+:
+   *P (kbytes)* *p (bits)* *d (bits)* *f (bits)*  1        2        4
+      8        (from B&O).
+
+   4. What's the relationship between the page table entry size, the page
+   size and the physical address space size?
+
+   5. Given a 46-bit virtual address space, a 40 bit physical address
+   space, a page size of 8kbytes and a page table entry size of 4 bytes. Wi=
+th a
+   multi-level page table scheme, how many levels of page table are needed?=
+ How
+   much memory is consumed by page tables for a process that uses
+   (a) 32kBytes
+   (b) 1MByte
+   (c) 32MBytes
+   (d) 1GByte
+   (e) 32Gytes
+   of memory?
+
+Week 6
+
+The following exercises related to processes.
+
+   1. Determine all possible output sequences of the following program:
+
+   #include <stdio.h>
+   #include <unistd.h>
+
+   int main(void)
+   {
+       printf("1\n");
+       if(fork())
+       {
+           printf("2\n");
+           if(!fork())
+           {
+               printf("3\n");
+           }
+           printf("4\n");
+       }
+       else
+       {
+           printf("5\n");
+       }
+       printf("6\n");
+       return 0;
+   }
+
+   2. Determine all possible output sequences of the following program:
+
+   #include <stdio.h>
+   #include <unistd.h>
+   #include <wait.h>
+
+   int main(void)
+   {
+       int child_status;
+
+       printf("1\n");
+       if(fork())
+       {
+           printf("2\n");
+           if(!fork())
+           {
+               printf("3\n");
+           }
+           else
+           {
+               printf("4\n");
+               wait(&child_status);
+               wait(&child_status);
+           }
+
+           printf("5\n");
+       }
+       else
+       {
+           printf("6\n");
+       }
+       printf("7\n");
+       return 0;
+   }
+
+    3. Write a simple implementation of system() using vfork() and
+   execvp(). (By "simple", we mean that your version of system doesn't have=
+ to
+   involve a shell, modifying signals etc. - just split the given string in=
+to
+   appropriate words. vfork() is a version of fork() - read the man page to
+   find out more about it.)
+
+Week 5
+
+The following exercises relate to files and file systems.
+
+   1. Give 5 different path names for the file /etc/passwd. (From
+   Tanenbaum)
+
+   2. Consider a system with a disk block size of 4kbytes and uses
+   i-nodes with triple-indirect which contains 14 block pointers, each of 4
+   bytes. The first 11 block pointers point directly to the first 11 disk
+   blocks, the 12th points to a block of pointers which point to disk block=
+s
+   (single indirect), etc.
+   (a) What's the size of the largest file that can be stored on the
+   system without using the single indirect blocks?
+   (b) What's the size of the largest file that can be stored on the
+   system without using the double indirect blocks?
+   (c) What's the size of the largest file that can be stored on the
+   system without using the triple indirect blocks?
+   (d) Suppose that small files could have their data stored in the
+   i-node rather than using a disk block. What's the largest amount of data
+   that could be stored in the i-node.
+
+   3. Name one advantage of hard links over soft links and one advantage
+   of soft links over hard links. (From Tanenbaum.)
+
+   4. If a user executes the command "chmod 754 filename", what will be
+   the first 10 characters output by the command "ls -l filename"?
+
+   5. Consider a system that supports 1000 users. Suppose that you want
+   to allow 500 of these users to be able to access (read) one file. How co=
+uld
+   you arrange this with UNIX protections? Is it possible to stop those use=
+rs
+   discovering the names of other files in the same directory?
+
+   6. Write (in C) your own simple version of ln that can create both
+   hard links and soft links. The program should accept arguments as:
+   *ln   target-pathname   link-name-in-current-dir*
+   to create hard links, and
+   *ln  -s   target-pathname   link-name-in-current-dir*
+   to create soft links.
+
+Week 4
+
+The following exercises relate to shells and shell scripts.
+
+   1. Write a shell script which prints your username and the current
+   date and time. (Hint consider the USER environment variable and the date
+   command.)
+
+   2. Write a shell script utility called *junk* that satisfies the
+   following:
+   junk [-l] [-p] [fileNames...]
+   *junk* is a replacement for the *rm* utility. Rather than removing
+   files, it moves them into the subdirectory .junk in your home directory.=
+ If
+   .junk does not exist, it is automatically created. The -l option lists t=
+he
+   current contents of the .junk directory, and the -p option purges .junk.
+   (From Glass & Ables)
+
+Week 3
+
+These exercises are intended to get you familiar with more complex C
+concepts including structures, some system calls, function pointers. *(Note
+that week 2 solutions have been edited for style. Now that the COMP2303/730=
+6
+Programming Style Guide has been published, please ensure that future
+solution submissions follow the style guide.)*
+
+   1. Write a C program which prints the current local time in the
+   format: hh:mm:ss to standard output. Hint: look at the manual pages for
+   time(2) and localtime(3c) (i.e. run "man -s 2 time" and "man -s 3c
+   localtime" on agave).
+   SOLUTION: wk3_1.c<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk3_1.=
+c>by
+Thomas Colborne
+
+   2. Write a C program which expects one or more filenames to be given
+   on the command line and then for each file, prints a line containing the
+   name of the file, followed by a colon, followed by the size of the file =
+(in
+   bytes). Hint: look at that stat(2) function.
+   SOLUTION: wk3_2.c<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk3_2.=
+c>by
+Samuel Cullen
+
+   3. (Similar to 2, aspects of 1) Write a C program which expects one or
+   more filenames to be given on the command line and then for each file,
+   prints a line containing the name of the file, followed by a colon, foll=
+owed
+   by the last access time, the last modification time and the last file st=
+atus
+   change. Each of the times should be in the format hh:mm:ss dd/mm/yyyy.
+
+   4. Write a C program which reads any number of lines from standard
+   input, each containing a single (double precision) floating point number=
+. At
+   EOF, the numbers are sorted using qsort and output to standard output.
+
+   5. Write a C program which expects a single filename as a command line
+   argument. The file can be assumed to be a text file (i.e. does not
+   contain null characters) containing lines of text. Your program should s=
+ort
+   the lines of text in the file (using qsort) into order from shortest to
+   longest and then output the lines in this order. The file can be of any
+   size, can have any number of lines and the the lines can be of any lengt=
+h.
+   Hints: you'll need to use malloc (and possibly realloc) to allocate spac=
+e
+   for the lines of text from the file (and for the array to hold pointers =
+to
+   the lines of text). Look at the fopen(3c) and fclose(3c) functions. For
+   reading the files, you may want to consider fread(3c) or fgets(3c).
+
+   6. Assuming a computer system requires natural alignment (i.e. types
+   which occupy n bytes must begin on an address which is a multiple of n) =
+and
+   that characters, shorts, ints, longs, floats, doubles and pointers to
+   objects occupy 1, 2, 4, 4, 4,  8 and 4 bytes respectively, what is the
+   result of the sizeof() operator in each of the following cases?
+   (a) sizeof(short)
+   (b) sizeof(short[5])
+   (c) sizeof(float[4])
+   (d) sizeof(struct {char c; double d; int i;})
+   (e) sizeof(struct {char c; int i; double d;})
+   (f) sizeof(struct {char c[4]; float f[2]; int i[3]; double d[2];})
+   (g) sizeof(union {short s[2]; int i[4];double[2]; char c[13];})
+   (h) sizeof(struct {char* cp[3], double* dp, short s;})
+   (i) sizeof(struct {char c[2]; union {int i; double d; char* cp;} data;
+   char c2[2];})
+   (j) sizeof(struct {char c[2]; char c2[2]; union {int i; double d;
+   char* cp;} data;})
+   SOLUTION (to all parts):
+wk3_6.txt<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk3_6.txt>by
+Kurt Doherty
+
+   7. Describe (in English) the type of var in each of the following
+   declarations:
+   (a) char** var[];
+   (b) int* a, var;
+   (c) int var(int);
+   (d) int (*var)(int);
+   (e) void (*var)();
+   (f) double *(*var)(double);
+   (g) void (*var)(void*, int);
+   (h) int *(*(*var)(int*))(void);
+   (i) void *(*var)(void *(*)(void*), void*(*)(void*),void*);
+   (j) int (*(*var[3])())(void (*)());
+   SOLUTION (to all parts):
+wk3_7.txt<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk3_7.txt>by
+Joshua Holland (with modifications/clarifications by Peter Sutton)
+
+Week 2
+
+These exercises are intended to get you familiar with the relationship
+between integers and floating point numbers, printf formatting, basic loops=
+,
+character comparisons, array iteration.
+
+   1. Write a C program which prompts the user for two decimal numbers
+   (assumed to be in the range 0 to 100 inclusive) and prints out both the
+   arithmetic mean and geometric mean of the two numbers to 2 decimal place=
+s.
+   SOLUTION: wk2_1.c<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk2_1.=
+c>by
+Sam Kingston
+
+   2. Write a C program that prints a "nicely formatted" table with row
+   and column headings where each cell shows the geometric mean (rounded to=
+ the
+   nearest integer) of the row and column values. Row values should range f=
+rom
+   25 to 100 in steps of 5. Column values should range from 25 to 100 in st=
+eps
+   of 5. Hint: See the multiplication table in C Tutorial
+2<http://www.itee.uq.edu.au/%7Ecomp2303/resources/C_Tutorials/tutorial2.htm=
+l>
+   .
+   SOLUTION: wk2_2.c<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk2_2.=
+c>by
+Joshua Holland
+
+   3. Write a C program that reads a string (of up to 80 characters) from
+   standard input and then prints out a report that specifies
+   (a) the number of uppercase characters in the string
+   (b) the number of lowercase characters in the string
+   (c) the number of digits in the string
+   Try writing both an "array index" and "pointer" version of this
+   program.
+   SOLUTION: wk2_3_array.c<http://www.itee.uq.edu.au/%7Ecomp2303/exercises/=
+wk2_3_array.c>by
+Alexander Marginson
+   SOLUTION: wk2_3_pointer.c<http://www.itee.uq.edu.au/%7Ecomp2303/exercise=
+s/wk2_3_pointer.c>by
+Richard Holland
+
+   privacy <http://www.uq.edu.au/privacy> | feedback<webmasters@itee.uq.edu=
+.au>
+    (c) 2002-2005 The University of Queensland, Brisbane, Australia
+ABN 63 942 912 684
+CRICOS Provider No:
+00025B<http://cricos.detya.gov.au/asp/InstitutionDetails.asp?PVID=3D025>
+Authorised by: Head of School
+Maintained by: webmasters@itee.uq.edu.au
+Last Updated: 4 June, 2007, 10:26am
+
+------=_Part_114054_30374180.1182270833791
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+<a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/" target=3D"_bla=
+nk" onclick=3D"return top.js.OpenExtLink(window,event,this)">Exercises</a><=
+br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+<form name=3D"search_form" style=3D"margin: 0px;" target=3D"_blank" onsubmi=
+t=3D"return window.confirm(&quot;You are submitting information to an exter=
+nal page.\nAre you sure?&quot;);">
+<table summary=3D"UQ Header" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%">
+<tbody><tr>
+<td rowspan=3D"2" width=3D"10%"><a href=3D"http://www.uq.edu.au/" target=3D=
+"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)"><img src=
+=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/uq-logo.gif" alt=3D=
+"The University of Queensland Homepage" border=3D"0" height=3D"72" width=3D=
+"200">
+</a></td>
+
+<td colspan=3D"2" width=3D"90%">
+
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"><tbo=
+dy><tr><td align=3D"left" width=3D"70%"><img src=3D"http://www.itee.uq.edu.=
+au/_templates/itee-v4/images/top-links.gif" usemap=3D"#11344d4d3a1b615d_Map=
+" alt=3D"" border=3D"0" height=3D"17" width=3D"392">
+
+<map name=3D"11344d4d3a1b615d_Map"><area shape=3D"rect" coords=3D"23,3,76,1=
+5" href=3D"http://www.uq.edu.au/" alt=3D"UQ Homepage" title=3D"UQ Homepage"=
+ target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)"=
+><area shape=3D"rect" coords=3D"82,3,129,15" href=3D"http://www.uq.edu.au/s=
+earch" alt=3D"Search UQ" title=3D"Search UQ" target=3D"_blank" onclick=3D"r=
+eturn top.js.OpenExtLink(window,event,this)">
+
+<area shape=3D"rect" coords=3D"137,3,196,15" href=3D"http://www.uq.edu.au/c=
+ontacts" alt=3D"Find all Contacts at UQ" title=3D"Find all Contacts at UQ" =
+target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)">=
+<area shape=3D"rect" coords=3D"202,3,241,15" href=3D"http://www.uq.edu.au/s=
+tudy" alt=3D"Study Options at UQ" title=3D"Study Options at UQ" target=3D"_=
+blank" onclick=3D"return top.js.OpenExtLink(window,event,this)">
+
+<area shape=3D"rect" coords=3D"249,3,295,15" href=3D"http://www.uq.edu.au/e=
+vents" alt=3D"Events at UQ" title=3D"Events at UQ" target=3D"_blank" onclic=
+k=3D"return top.js.OpenExtLink(window,event,this)"><area shape=3D"rect" coo=
+rds=3D"300,3,334,15" href=3D"http://www.uq.edu.au/maps" alt=3D"UQ Maps" tit=
+le=3D"UQ Maps" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(windo=
+w,event,this)">
+<area shape=3D"rect" coords=3D"344,3,391,15" href=3D"http://www.uq.edu.au/l=
+ibrary" alt=3D"UQ Library" title=3D"UQ Library" target=3D"_blank" onclick=
+=3D"return top.js.OpenExtLink(window,event,this)">
+</map></td><td align=3D"right" width=3D"30%"><a href=3D"http://www.my.uq.ed=
+u.au/" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,=
+this)"><img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/my-u=
+q.gif" alt=3D"Link to my.UQ" border=3D"0" height=3D"17" width=3D"69">
+</a></td></tr></tbody>
+</table>
+
+
+</td>
+</tr>
+<tr>
+<td align=3D"left" width=3D"70%"><a href=3D"http://www.itee.uq.edu.au/" tar=
+get=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)"><im=
+g src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/header.gif" al=
+t=3D"School of ITEE" border=3D"0" height=3D"55" width=3D"379">
+</a></td>
+
+<td align=3D"right" width=3D"30%"><a href=3D"http://www.itee.uq.edu.au/" ta=
+rget=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)"><i=
+mg src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/top-right.gif=
+" alt=3D"ITEE Main Website" border=3D"0" height=3D"55" width=3D"190">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan=3D"3" align=3D"right" height=3D"21">
+
+
+<table summary=3D"Search Box" align=3D"right" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0">
+<tbody><tr>
+<td>
+<select name=3D"search_select">
+<option value=3D"http://www.google.com/u/itee?q=3D" selected=3D"selected">P=
+ublic ITEE</option>
+<option value=3D"http://www.uq.edu.au/search/index.asp?q1=3D">All UQ</optio=
+n>
+</select>&nbsp;
+<input name=3D"search_text" size=3D"18" maxlength=3D"100" type=3D"text">&nb=
+sp;
+</td>
+<td>
+<input name=3D"submit" value=3D"search" src=3D"http://_templates/itee-v4/im=
+ages/search_button.gif" alt=3D"Search" type=3D"image">&nbsp;&nbsp;
+</td>
+</tr>
+</tbody></table>
+
+
+</td>
+</tr>
+</tbody></table>
+</form>
+
+
+
+<table summary=3D"Content Table" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0">
+<tbody><tr>
+
+
+
+<td valign=3D"top" width=3D"200">
+
+
+<img src=3D"http://www.itee.uq.edu.au/%7Ecomp2303/images/top-left.jpg" alt=
+=3D"" height=3D"200" width=3D"193"><br>
+
+
+<br>
+
+
+<br>
+<div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody><tr><th colspan=3D"3">QUICK LINKS</th></tr>
+
+
+<tr><td>
+<img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/quick-links=
+-arrow.gif" alt=3D"" height=3D"9" width=3D"9"></td>
+<td><a href=3D"http://www.itee.uq.edu.au/" target=3D"_blank" onclick=3D"ret=
+urn top.js.OpenExtLink(window,event,this)">ITEE Public Web</a></td><td>&nbs=
+p;</td></tr>
+<tr><td>
+<img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/quick-links=
+-arrow.gif" alt=3D"" height=3D"9" width=3D"9"></td>
+<td width=3D"150"><a href=3D"http://studenthelp.itee.uq.edu.au/" target=3D"=
+_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)">Student IT=
+ Help</a></td><td>&nbsp;</td></tr>
+<tr><td>
+<img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/quick-links=
+-arrow.gif" alt=3D"" height=3D"9" width=3D"9"></td>
+<td><a href=3D"http://internal.itee.uq.edu.au/" target=3D"_blank" onclick=
+=3D"return top.js.OpenExtLink(window,event,this)">ITEE Internal Web</a></td=
+><td>&nbsp;</td></tr>
+<tr><td>
+<img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/quick-links=
+-arrow.gif" alt=3D"" height=3D"9" width=3D"9"></td>
+<td><a href=3D"http://help.itee.uq.edu.au/" target=3D"_blank" onclick=3D"re=
+turn top.js.OpenExtLink(window,event,this)">Staff IT Help</a></td><td>&nbsp=
+;</td></tr>
+
+
+
+<tr><td colspan=3D"3">&nbsp;</td></tr>
+</tbody></table>
+</div>
+<br>
+
+
+</td>
+
+
+
+
+
+<td valign=3D"top" width=3D"95%"><br>
+
+
+
+<div>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody><tr><td width=3D"100%">
+<a href=3D"http://www.itee.uq.edu.au/" target=3D"_blank" onclick=3D"return =
+top.js.OpenExtLink(window,event,this)">ITEE Home</a> =BB <a href=3D"http://=
+www.itee.uq.edu.au/%7Ecomp2303/" target=3D"_blank" onclick=3D"return top.js=
+.OpenExtLink(window,event,this)">
+COMP2303 - Network And Operating Systems Principles</a> =BB Exercises</td><=
+td align=3D"right" nowrap=3D"nowrap" width=3D"110">
+
+
+
+
+<div align=3D"right">
+<a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/?print=3D1" targ=
+et=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)">
+<img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/images/icon-print.=
+gif" alt=3D"Printer Friendly Version" border=3D"0" height=3D"14" width=3D"1=
+6">
+</a>
+<a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/?print=3D1" titl=
+e=3D"Printer Friendly Version" target=3D"_blank" onclick=3D"return top.js.O=
+penExtLink(window,event,this)">Print version</a>&nbsp;&nbsp;</div>
+
+
+
+</td></tr>
+</tbody></table>
+</div>
+
+
+
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"2" wi=
+dth=3D"97%">
+<tbody><tr>
+<td width=3D"28"><img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/i=
+mages/level2-arrow.gif" alt=3D"" height=3D"28" width=3D"28"></td>
+<td align=3D"left" width=3D"100%">&nbsp;COMP2303 / COMP7306 Exercises</td>
+</tr>
+<tr>
+<td colspan=3D"2"><img src=3D"http://www.itee.uq.edu.au/_templates/itee-v4/=
+images/level2-underline.gif" alt=3D"" height=3D"1" width=3D"395"></td>
+</tr>
+</tbody></table>
+
+
+<div>
+
+
+
+<p>Exercises will be provided relating to the lecture material and C=20
+programming. We won&#39;t provide solutions to these exercises, but are wil=
+ling to=20
+post correct student supplied solutions. If you want your solution to be=20
+considered, email it to <a href=3D"mailto:comp2303@itee.uq.edu.au" target=
+=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)">
+comp2303@itee.uq.edu.au</a> (as an attachment) with the word SOLUTION in th=
+e subject line and=20
+clearly specify the week and exercise number which this is a potential solu=
+tion=20
+for. <b>The submitter&#39;s identity (name) WILL be published unless you=20
+request anonymity. </b>Either way, you <b>MUST send the email from your stu=
+dent=20
+email account OR include your student number in the email</b>. Multiple=20
+solutions will be posted only if sufficiently different from the first solu=
+tion=20
+posted. Don&#39;t expect a reply to your email - we won&#39;t mark your wor=
+k. If you=20
+have questions or queries about posted solutions or other possible solution=
+s,=20
+you should post them to the newsgroup for discussion or raise them at a tut=
+orial=20
+or consultation session.</p>
+<h3>Week 12 - Internet &amp; Ethernet</h3>
+<ol>
+=09<li>For each of the following IP addresses and associated subnet masks, =
+what=20
+=09is the range of IP addresses on the local network?<table style=3D"border=
+-collapse: collapse;" border=3D"1">
+=09=09<tbody><tr>
+=09=09=09<td><b>IP address</b></td>
+=09=09=09<td><b>Subnet-mask</b></td>
+=09=09=09<td><b>Range of IP addresses</b></td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td><a href=3D"http://130.102.15.25" target=3D"_blank" onclick=3D"=
+return top.js.OpenExtLink(window,event,this)">130.102.15.25</a></td>
+=09=09=09<td><a href=3D"http://255.255.255.0" target=3D"_blank" onclick=3D"=
+return top.js.OpenExtLink(window,event,this)">255.255.255.0</a></td>
+=09=09=09<td>&nbsp;</td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td><a href=3D"http://130.102.15.25" target=3D"_blank" onclick=3D"=
+return top.js.OpenExtLink(window,event,this)">130.102.15.25</a></td>
+=09=09=09<td><a href=3D"http://255.255.255.192" target=3D"_blank" onclick=
+=3D"return top.js.OpenExtLink(window,event,this)">255.255.255.192</a></td>
+=09=09=09<td>&nbsp;</td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td><a href=3D"http://130.102.25.15" target=3D"_blank" onclick=3D"=
+return top.js.OpenExtLink(window,event,this)">130.102.25.15</a></td>
+=09=09=09<td><a href=3D"http://255.255.252.0" target=3D"_blank" onclick=3D"=
+return top.js.OpenExtLink(window,event,this)">255.255.252.0</a></td>
+=09=09=09<td>&nbsp;</td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td><a href=3D"http://130.102.25.15" target=3D"_blank" onclick=3D"=
+return top.js.OpenExtLink(window,event,this)">130.102.25.15</a></td>
+=09=09=09<td><a href=3D"http://255.255.224.0" target=3D"_blank" onclick=3D"=
+return top.js.OpenExtLink(window,event,this)">255.255.224.0</a></td>
+=09=09=09<td>&nbsp;</td>
+=09=09</tr>
+=09</tbody></table>
+=09<br>
+&nbsp;</li>
+=09<li>Write a C program that does the conversion in (1) above - specifical=
+ly,=20
+=09your program should accept two command line arguments - an IP address an=
+d a=20
+=09subnet mask (both in dotted-decimal format like those in the table above=
+) -=20
+=09and then print out the range of (i.e. &quot;smallest&quot; to &quot;grea=
+test&quot;) IP addresses=20
+=09on that local network. <br>
+&nbsp;</li>
+=09<li>Why is the first header in an IP packet the IP version header?<br>
+&nbsp;</li>
+=09<li>Why are ARP database entries cached?<br>
+&nbsp;</li>
+=09<li>Modify the UDP chat program (from 25 May lecture) to allow for UDP=
+=20
+=09conversation between three (or perhaps more) clients. <br>
+&nbsp;</li>
+=09<li>A computer on an Ethernet is configured with a MAC address=20
+=0900-05-5d-7f-fc-d7, an IP address <a href=3D"http://130.102.128.25" targe=
+t=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,this)">130.1=
+02.128.25</a>, a gateway address of=20
+=09<a href=3D"http://130.102.129.254" target=3D"_blank" onclick=3D"return t=
+op.js.OpenExtLink(window,event,this)">130.102.129.254</a> and a subnet mask=
+ of <a href=3D"http://255.255.252.0" target=3D"_blank" onclick=3D"return to=
+p.js.OpenExtLink(window,event,this)">
+255.255.252.0</a>. The computer&#39;s ARP cache=20
+=09contains one entry:<br><a href=3D"http://130.102.129.254" target=3D"_bla=
+nk" onclick=3D"return top.js.OpenExtLink(window,event,this)">130.102.129.25=
+4</a>&nbsp;&nbsp;&nbsp; 00-0e-f7-4e-e6-78<br>Consider an IP datagram contai=
+ned in an Ethernet frame sent to each of the=20
+=09IP addresses below. Write down the destination IP address for the datagr=
+am=20
+=09and the destination MAC address for the enclosing frame as it leaves the=
+=20
+=09source (<a href=3D"http://130.102.128.25" target=3D"_blank" onclick=3D"r=
+eturn top.js.OpenExtLink(window,event,this)">130.102.128.25</a>). If the an=
+swer is unknown, specify how it can be=20
+=09determined.<br>(a) <a href=3D"http://130.102.129.25" target=3D"_blank" o=
+nclick=3D"return top.js.OpenExtLink(window,event,this)">130.102.129.25</a><=
+br>(b) <a href=3D"http://130.102.127.254" target=3D"_blank" onclick=3D"retu=
+rn top.js.OpenExtLink(window,event,this)">
+130.102.127.254</a></li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk9"></a>Week 9</h3>
+<p>The following exercises relate to interprocess communication</p>
+<ol>
+=09<li>Write a C program which contains a handler for segmentation faults. =
+The=20
+=09handler should attempt to print a message to standard error then exit. A=
+fter=20
+=09setting up the handler, your program should cause a segmentation fault (=
+e.g.=20
+=09dereference a null pointer). Hint: use the signal() or sigset() system c=
+all=20
+=09as illustrated in lectures. <br>
+&nbsp;</li>
+=09<li>Write a C program which creates 5 children with pipes between them t=
+o=20
+=09execute <br>
+=09who | cut -d &quot; &quot; -f1 | sort | uniq | wc -l<br>
+=09After forking each child, you will need to make standard input/output po=
+int=20
+=09to the right ends of the right pipes and then call exec() to start the=
+=20
+=09appropriate program. Look at the pipe example from week 9 lectures as a=
+=20
+=09starting point. The parent should wait until the last child has finished=
+=20
+=09before exiting. <br>
+&nbsp;</li>
+=09<li>Rewrite your answer to question 2 so that the parent is the process =
+that=20
+=09execs &quot;wc -l&quot; (i.e. only four children are used). (You&#39;ll =
+need to make sure=20
+=09that standard input for the parent comes from the right pipe.) </li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk8"></a>Week8</h3>
+<p>The following exercises relate to memory allocation.</p>
+<ol><li>Implement (in C) a version of malloc/free that always allocates new=
+ memory=20
+for every malloc request and ignores free requests. (The allocator will be =
+fast=20
+but have very poor memory utilization.) Hint: look at the manual entries fo=
+r the=20
+brk() and sbrk() functions.<br>
+&nbsp;</li>
+<li>Add code to the version of malloc in 1 (above) that logs all memory=20
+allocations (malloc&#39;s) and deallocations (free&#39;s) to a file. (This =
+is called a=20
+memory activity trace.) The format of the file should be one line per opera=
+tion,=20
+either an Allocate line or a Free line:<br>
+<b>Allocate <i>tag size</i><br>
+Free <i>tag</i></b><br>
+where <i>tag</i> is the memory address (decimal) of the allocated/freed mem=
+ory=20
+and <i>size</i> is the number of bytes requested in the allocation.</li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk7"></a>Week7</h3>
+<p>The following exercises relate to threads</p>
+<ol>
+=09<li>Write a thread safe version of the function strtok(). Hint: It might=
+=20
+=09have the same arguments as the thread-safe strtok_r().</li>
+=09<li>Determine which of the following library functions and system calls =
+are=20
+=09thread safe and which aren&#39;t. (Hint: read the man pages.)<ol type=3D=
+"a">
+=09=09<li>strcpy()</li>
+=09=09<li>strlen()</li>
+=09=09<li>ctime()</li>
+=09=09<li>gethostname()</li>
+=09=09<li>gethostbyname()</li>
+=09=09<li>lseek()</li>
+=09=09<li>readdir()</li>
+=09=09<li>opendir()</li>
+=09</ol>
+=09</li>
+</ol>
+<p>The following exercises relate to virtual memory</p>
+<ol start=3D"3">
+<li>Write a C program to determine the size of pages on agave. Hint: look a=
+t the=20
+sysconf(3c) and getpagesize(3c) library functions. Try using both.<br>
+&nbsp;</li>
+<li>Determine the potential (i.e. maximum) number of page table entries (PT=
+Es)=20
+that are needed for the following combinations of virtual address size (n, =
+in=20
+bits) and page size (P, in kbytes):<table style=3D"border-collapse: collaps=
+e;" border=3D"1" cellpadding=3D"2">
+=09<tbody><tr>
+=09=09<td align=3D"center"><b>n (bits)</b></td>
+=09=09<td align=3D"center"><b>P (kbytes)</b></td>
+=09=09<td align=3D"center"><b>#PTEs</b></td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center">16</td>
+=09=09<td align=3D"center">4</td>
+=09=09<td align=3D"center">&nbsp;</td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center">16</td>
+=09=09<td align=3D"center">8</td>
+=09=09<td align=3D"center">&nbsp;</td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center">32</td>
+=09=09<td align=3D"center">4</td>
+=09=09<td align=3D"center">&nbsp;</td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center">32</td>
+=09=09<td align=3D"center">8</td>
+=09=09<td align=3D"center">&nbsp;</td>
+=09</tr>
+</tbody></table>
+(from B&amp;O).<br>
+&nbsp;</li>
+<li>Given a 32-bit virtual address space and a 24-bit physical address spac=
+e,=20
+determine the number of bits in the page number (p), the page offset (d) an=
+d the=20
+frame number (f) for the following page sizes (P, in kbytes):<table style=
+=3D"border-collapse: collapse; margin-bottom: 0pt;" border=3D"1" cellpaddin=
+g=3D"2">
+=09<tbody><tr>
+=09=09<td align=3D"center" width=3D"78"><b>P (kbytes)</b></td>
+=09=09<td align=3D"center" width=3D"100"><b>p (bits)</b></td>
+=09=09<td align=3D"center" width=3D"100"><b>d (bits)</b></td>
+=09=09<td align=3D"center" width=3D"100"><b>f (bits)</b></td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center" width=3D"78">1</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center" width=3D"78">2</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center" width=3D"78">4</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09</tr>
+=09<tr>
+=09=09<td align=3D"center" width=3D"78">8</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09=09<td align=3D"center" width=3D"100">&nbsp;</td>
+=09</tr>
+</tbody></table>
+(from B&amp;O).<br>
+&nbsp;</li>
+<li>What&#39;s the relationship between the page table entry size, the page=
+ size and=20
+the physical address space size?<br>
+&nbsp;</li>
+<li>Given a 46-bit virtual address space, a 40 bit physical address space, =
+a=20
+page size of 8kbytes and a page table entry size of 4 bytes. With a multi-l=
+evel=20
+page table scheme, how many levels of page table are needed? How much memor=
+y is=20
+consumed by page tables for a process that uses<br>
+(a) 32kBytes<br>
+(b) 1MByte<br>
+(c) 32MBytes<br>
+(d) 1GByte<br>
+(e) 32Gytes<br>
+of memory?</li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk6"></a>Week 6</h3>
+<p>The following exercises related to processes.</p>
+<ol>
+=09<li>Determine all possible output sequences of the following program: </=
+li>
+<pre>#include &lt;stdio.h&gt;<br>#include &lt;unistd.h&gt;<br><br>int main(=
+void)<br>{<br>    printf(&quot;1\n&quot;);<br>    if(fork()) <br>    {<br> =
+       printf(&quot;2\n&quot;);<br>        if(!fork()) <br>        {<br>
+            printf(&quot;3\n&quot;);<br>        }<br>        printf(&quot;4=
+\n&quot;);<br>    } <br>    else <br>    {<br>        printf(&quot;5\n&quot=
+;);<br>    }<br>    printf(&quot;6\n&quot;);<br>    return 0;<br>}</pre>
+
+
+<li>Determine all possible output sequences of the following program:<pre>#=
+include &lt;stdio.h&gt;<br>#include &lt;unistd.h&gt;<br>#include &lt;wait.h=
+&gt;<br><br>int main(void)<br>{<br>    int child_status;<br><br>    printf(=
+&quot;1\n&quot;);
+<br>    if(fork())<br>    {<br>        printf(&quot;2\n&quot;);<br>        =
+if(!fork())<br>        {<br>            printf(&quot;3\n&quot;);<br>       =
+ }<br>        else<br>        {<br>            printf(&quot;4\n&quot;);
+<br>            wait(&amp;child_status);<br>            wait(&amp;child_sta=
+tus);<br>        }<br><br>        printf(&quot;5\n&quot;);<br>    }<br>    =
+else<br>    {<br>        printf(&quot;6\n&quot;);<br>    }<br>    printf(&q=
+uot;7\n&quot;);
+<br>    return 0;<br>}</pre>
+</li>
+<li>Write a simple implementation of system() using vfork() and execvp(). (=
+By=20
+&quot;simple&quot;, we mean that your version of system doesn&#39;t have to=
+ involve a shell,=20
+modifying signals etc. - just split the given string into appropriate words=
+.=20
+vfork() is a version of fork() - read the man page to find out more about i=
+t.)</li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk5"></a>Week 5</h3>
+<p>The following exercises relate to files and file systems.</p>
+<ol>
+=09<li>Give 5 different path names for the file /etc/passwd. (From Tanenbau=
+m)<br>
+=09&nbsp;</li>
+=09<li>Consider a system with a disk block size of 4kbytes and uses i-nodes=
+=20
+=09with triple-indirect which contains 14 block pointers, each of 4 bytes. =
+The=20
+=09first 11 block pointers point directly to the first 11 disk blocks, the =
+12th=20
+=09points to a block of pointers which point to disk blocks (single indirec=
+t),=20
+=09etc. <br>
+=09(a) What&#39;s the size of the largest file that can be stored on the sy=
+stem=20
+=09without using the single indirect blocks?<br>
+=09(b) What&#39;s the size of the largest file that can be stored on the sy=
+stem=20
+=09without using the double indirect blocks?<br>
+=09(c) What&#39;s the size of the largest file that can be stored on the sy=
+stem=20
+=09without using the triple indirect blocks?<br>
+=09(d) Suppose that small files could have their data stored in the i-node=
+=20
+=09rather than using a disk block. What&#39;s the largest amount of data th=
+at could=20
+=09be stored in the i-node.<br>
+=09&nbsp;</li>
+=09<li>Name one advantage of hard links over soft links and one advantage o=
+f=20
+=09soft links over hard links. (From Tanenbaum.)<br>
+=09&nbsp;</li>
+=09<li>If a user executes the command &quot;chmod 754 filename&quot;, what =
+will be the=20
+=09first 10 characters output by the command &quot;ls -l filename&quot;?<br=
+>
+=09&nbsp;</li>
+=09<li>Consider a system that supports 1000 users. Suppose that you want to=
+=20
+=09allow 500 of these users to be able to access (read) one file. How could=
+ you=20
+=09arrange this with UNIX protections? Is it possible to stop those users=
+=20
+=09discovering the names of other files in the same directory?<br>
+=09&nbsp;</li>
+=09<li>Write (in C) your own simple version of ln that can create both hard=
+=20
+=09links and soft links. The program should accept arguments as:<br>
+=09<b>ln <i>&nbsp; target-pathname&nbsp; </i>&nbsp;<i>link-name-in-current-=
+dir</i></b><br>
+=09to create hard links, and<br>
+=09<b>ln&nbsp; -s&nbsp;&nbsp; <i>target-pathname&nbsp;&nbsp; link-name-in-c=
+urrent-dir</i></b><br>
+=09to create soft links.</li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk4"></a>Week 4</h3>
+<p>The following exercises relate to shells and shell scripts.</p>
+<ol>
+=09<li>Write a shell script which prints your username and the current date=
+ and=20
+=09time. (Hint consider the USER environment variable and the date command.=
+)<br>
+&nbsp;</li>
+=09<li>Write a shell script utility called <b>junk</b> that satisfies the=
+=20
+=09following:<br>
+=09junk [-l] [-p] [fileNames...]<br>
+=09<b>junk</b> is a replacement for the <b>rm</b> utility. Rather than remo=
+ving=20
+=09files, it moves them into the subdirectory .junk in your home directory.=
+ If=20
+=09.junk does not exist, it is automatically created. The -l option lists t=
+he=20
+=09current contents of the .junk directory, and the -p option purges .junk.=
+=20
+=09(From Glass &amp; Ables)</li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk3"></a>Week 3</h3>
+<p>These exercises are intended to get you familiar with more complex C con=
+cepts=20
+including structures, some system calls, function pointers. <b>(Note that w=
+eek 2=20
+solutions have been edited for style. Now that the COMP2303/7306 Programmin=
+g=20
+Style Guide has been published, please ensure that future solution submissi=
+ons=20
+follow the style guide.)</b></p>
+<ol>
+=09<li>Write a C program which prints the current local time in the format:=
+=20
+=09hh:mm:ss to standard output. Hint: look at the manual pages for time(2) =
+and=20
+=09localtime(3c) (i.e. run &quot;man -s 2 time&quot; and &quot;man -s 3c lo=
+caltime&quot; on agave).<br>
+=09SOLUTION: <a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk3=
+_1.c" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,t=
+his)">wk3_1.c</a> by Thomas Colborne<br>&nbsp;</li><li>Write a C program wh=
+ich expects one or more filenames to be given on the=20
+=09command line and then for each file, prints a line containing the name o=
+f=20
+=09the file, followed by a colon, followed by the size of the file (in byte=
+s).=20
+=09Hint: look at that stat(2) function.<br>
+=09SOLUTION: <a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk3=
+_2.c" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,t=
+his)">wk3_2.c</a> by Samuel Cullen<br>&nbsp;</li><li>(Similar to 2, aspects=
+ of 1) Write a C program which expects one or more=20
+=09filenames to be given on the command line and then for each file, prints=
+ a=20
+=09line containing the name of the file, followed by a colon, followed by t=
+he=20
+=09last access time, the last modification time and the last file status=20
+=09change. Each of the times should be in the format hh:mm:ss dd/mm/yyyy. <=
+br>&nbsp;</li><li>Write a C program which reads any number of lines from st=
+andard input,=20
+=09each containing a single (double precision) floating point number. At EO=
+F,=20
+=09the numbers are sorted using qsort and output to standard output.<br>&nb=
+sp;</li><li>Write a C program which expects a single filename as a command =
+line=20
+=09argument. The file can be assumed to be a text file (i.e. does not conta=
+in=20
+=09null characters) containing lines of text. Your program should sort the=
+=20
+=09lines of text in the file (using qsort) into order from shortest to long=
+est=20
+=09and then output the lines in this order. The file can be of any size, ca=
+n=20
+=09have any number of lines and the the lines can be of any length. Hints:=
+=20
+=09you&#39;ll need to use malloc (and possibly realloc) to allocate space f=
+or the=20
+=09lines of text from the file (and for the array to hold pointers to the l=
+ines=20
+=09of text). Look at the fopen(3c) and fclose(3c) functions. For reading th=
+e=20
+=09files, you may want to consider fread(3c) or fgets(3c). <br>&nbsp;</li><=
+li>Assuming a computer system requires natural alignment (i.e. types which=
+=20
+=09occupy n bytes must begin on an address which is a multiple of n) and th=
+at=20
+=09characters, shorts, ints, longs, floats, doubles and pointers to objects=
+=20
+=09occupy 1, 2, 4, 4, 4,&nbsp; 8 and 4 bytes respectively, what is the resu=
+lt=20
+=09of the sizeof() operator in each of the following cases?<br>
+=09(a) sizeof(short)<br>
+=09(b) sizeof(short[5])<br>
+=09(c) sizeof(float[4])<br>
+=09(d) sizeof(struct {char c; double d; int i;})<br>
+=09(e) sizeof(struct {char c; int i; double d;})<br>
+=09(f) sizeof(struct {char c[4]; float f[2]; int i[3]; double d[2];})<br>
+=09(g) sizeof(union {short s[2]; int i[4];double[2]; char c[13];})<br>
+=09(h) sizeof(struct {char* cp[3], double* dp, short s;})<br>
+=09(i) sizeof(struct {char c[2]; union {int i; double d; char* cp;} data; c=
+har=20
+=09c2[2];})<br>
+=09(j) sizeof(struct {char c[2]; char c2[2]; union {int i; double d; char* =
+cp;}=20
+=09data;})<br>
+=09SOLUTION (to all parts): <a href=3D"http://www.itee.uq.edu.au/%7Ecomp230=
+3/exercises/wk3_6.txt" target=3D"_blank" onclick=3D"return top.js.OpenExtLi=
+nk(window,event,this)">wk3_6.txt</a> by Kurt Doherty<br>
+&nbsp;</li>
+=09<li>Describe (in English) the type of var in each of the following=20
+=09declarations:<br>
+=09(a) char** var[];<br>
+=09(b) int* a, var;<br>
+=09(c) int var(int);<br>
+=09(d) int (*var)(int);<br>
+=09(e) void (*var)();<br>
+=09(f) double *(*var)(double);<br>
+=09(g) void (*var)(void*, int);<br>
+=09(h) int *(*(*var)(int*))(void);<br>
+=09(i) void *(*var)(void *(*)(void*), void*(*)(void*),void*);<br>
+=09(j) int (*(*var[3])())(void (*)());<br>
+=09SOLUTION (to all parts): <a href=3D"http://www.itee.uq.edu.au/%7Ecomp230=
+3/exercises/wk3_7.txt" target=3D"_blank" onclick=3D"return top.js.OpenExtLi=
+nk(window,event,this)">wk3_7.txt</a> by Joshua Holland=20
+=09(with modifications/clarifications by Peter Sutton)</li>
+</ol>
+<h3><a name=3D"11344d4d3a1b615d_wk2"></a>Week 2</h3>
+<p>These exercises are intended to get you familiar with the relationship=
+=20
+between integers and floating point numbers, printf formatting, basic loops=
+,=20
+character comparisons, array iteration.</p>
+<ol>
+=09<li>Write a C program which prompts the user for two decimal numbers=20
+=09(assumed to be in the range 0 to 100 inclusive) and prints out both the=
+=20
+=09arithmetic mean and geometric mean of the two numbers to 2 decimal place=
+s.<br>
+=09SOLUTION: <a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk2=
+_1.c" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,t=
+his)">wk2_1.c</a> by Sam Kingston<br>
+&nbsp;</li><li>Write a C program that prints a &quot;nicely formatted&quot;=
+ table with row and=20
+=09column headings where each cell shows the geometric mean (rounded to the=
+=20
+=09nearest integer) of the row and column values. Row values should range f=
+rom=20
+=0925 to 100 in steps of 5. Column values should range from 25 to 100 in st=
+eps=20
+=09of 5. Hint: See the multiplication table in
+=09<a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/resources/C_Tutorials/t=
+utorial2.html" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(windo=
+w,event,this)">C Tutorial 2</a>.<br>
+=09SOLUTION: <a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk2=
+_2.c" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,t=
+his)">wk2_2.c</a> by Joshua Holland<br>
+&nbsp;</li><li>Write a C program that reads a string (of up to 80 character=
+s) from=20
+=09standard input and then prints out a report that specifies<br>
+=09(a) the number of uppercase characters in the string<br>
+=09(b) the number of lowercase characters in the string<br>
+=09(c) the number of digits in the string<br>
+=09Try writing both an &quot;array index&quot; and &quot;pointer&quot; vers=
+ion of this program.<br>
+=09SOLUTION: <a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk2=
+_3_array.c" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,e=
+vent,this)">wk2_3_array.c</a> by Alexander Marginson
+=09<br>
+=09SOLUTION: <a href=3D"http://www.itee.uq.edu.au/%7Ecomp2303/exercises/wk2=
+_3_pointer.c" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window=
+,event,this)">wk2_3_pointer.c</a> by Richard Holland</li>
+=09
+</ol>
+
+
+</div>
+</td>
+</tr>
+</tbody></table>
+
+
+<table summary=3D"Feedback" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" width=3D"100%">
+<tbody><tr><td align=3D"right"> <a href=3D"http://www.uq.edu.au/privacy" ti=
+tle=3D"View Privacy details" target=3D"_blank" onclick=3D"return top.js.Ope=
+nExtLink(window,event,this)">privacy</a> | <a href=3D"mailto:webmasters@ite=
+e.uq.edu.au" title=3D"Give Feedback on this website" target=3D"_blank" oncl=
+ick=3D"return top.js.OpenExtLink(window,event,this)">
+
+feedback</a>&nbsp;</td></tr>
+</tbody></table>
+
+
+
+<table summary=3D"Website Footer" border=3D"0" cellpadding=3D"1" cellspacin=
+g=3D"1" width=3D"100%">
+<tbody><tr>
+<td align=3D"right">
+&copy; 2002-2005 The University of Queensland, Brisbane, Australia<br>
+ABN 63 942 912 684<br>
+CRICOS Provider No: <a href=3D"http://cricos.detya.gov.au/asp/InstitutionDe=
+tails.asp?PVID=3D025" title=3D"Takes you to the CRICOS website" target=3D"_=
+blank" onclick=3D"return top.js.OpenExtLink(window,event,this)">00025B</a><=
+br>
+
+
+Authorised by: Head of School<br>
+Maintained by: <a href=3D"mailto:webmasters@itee.uq.edu.au" title=3D"Feedba=
+ck" target=3D"_blank" onclick=3D"return top.js.OpenExtLink(window,event,thi=
+s)">webmasters@itee.uq.edu.au</a><br>
+
+
+Last Updated: 4 June, 2007, 10:26am
+</td>
+</tr>
+</tbody></table>
+
+
+</div>
+
+------=_Part_114054_30374180.1182270833791--
